@@ -7,6 +7,21 @@
 #define TAM_NAVIO_V 3 // Tamanho do navio na vertical
 #define TAM_NAVIO_DD 3 // Tamanho do navio na diagonal direita
 #define TAM_NAVIO_DE 4 // Tamanho do navio na diagonal esquerda
+void imprimirTabuleiro(int tabuleiro [TAMANHO][TAMANHO]){
+    // Imprime o cabeçalho das colunas (A B C D ...)
+    printf("  ");  // Espaço para alinhar com os números das linhas
+    for (int letra = 0; letra < TAMANHO; letra++) {
+        printf(" %c", 'A' + letra);
+    }
+    printf("\n");
+    for (int i = 0; i<TAMANHO;i++){
+        printf("%d| ",i);
+        for (int j = 0; j<TAMANHO; j++){
+            printf("%d ",tabuleiro[i][j]);
+        }
+        printf("\n");
+    }
+}
 int main() {
     // NIVEL NOVATO TEMA 4
     // Declara a variável para armazenamento de tabuleiro
@@ -19,13 +34,8 @@ int main() {
             tabuleiro[i][j] = 0;
         }
     }
-    // Imprime o tabuleiro só com 0 (água)
-    for (int i = 0; i<TAMANHO;i++){
-        for (int j = 0; j<TAMANHO; j++){
-            printf("%d ",tabuleiro[i][j]);
-        }
-        printf("\n");
-    }
+    // imprime o tabuleiro
+    imprimirTabuleiro(tabuleiro);
     // Adiciona o Navio de tamanho 3 na Horizontal
     for (int i=0; i<TAM_NAVIO_H; i++){
         for (int j=0; j<TAM_NAVIO_H; j++){
@@ -69,12 +79,8 @@ int main() {
         }
     }
     printf("\n");
-    for (int i = 0; i<TAMANHO;i++){
-        for (int j = 0; j<TAMANHO; j++){
-            printf("%d ",tabuleiro[i][j]);
-        }
-        printf("\n");
-    }
+    // imprime o tabuleiro
+    imprimirTabuleiro(tabuleiro);
 
     // Nível Novato - Posicionamento dos Navios
     // Sugestão: Declare uma matriz bidimensional para representar o tabuleiro (Ex: int tabuleiro[5][5];).
