@@ -3,15 +3,15 @@
 // Este código inicial serve como base para o desenvolvimento do sistema de Batalha Naval.
 // Siga os comentários para implementar cada parte do desafio.
 #define TAMANHO 10
-#define TAM_NAVIO 3
+#define TAM_NAVIO_H 3 // Tamanho do navio na horizontal
+#define TAM_NAVIO_V 3 // Tamanho do navio na vertical
+#define TAM_NAVIO_DD 3 // Tamanho do navio na diagonal direita
+#define TAM_NAVIO_DE 4 // Tamanho do navio na diagonal esquerda
 int main() {
     // NIVEL NOVATO TEMA 4
     // Declara a variável para armazenamento de tabuleiro
     int tabuleiro [TAMANHO][TAMANHO];
-    // Posição inicial do Navio Horizontal
-    int linhah = 2, colunah = 2;
-    // Posição inicial do Navio Vertical
-    int linhav = 2, colunav = 5;
+
     // adiciona o valor 0 para todas as posições do tabuleiro
     // sendo 0 = água
     for (int i = 0; i<TAMANHO;i++){
@@ -27,15 +27,45 @@ int main() {
         printf("\n");
     }
     // Adiciona o Navio de tamanho 3 na Horizontal
-    for (int i=0; i<TAM_NAVIO; i++){
-        for (int j=0; j<TAM_NAVIO; j++){
-            tabuleiro[linhah+j][colunah] = 3;
+    for (int i=0; i<TAM_NAVIO_H; i++){
+        for (int j=0; j<TAM_NAVIO_H; j++){
+            if(tabuleiro[1+j][1]==0){
+                tabuleiro[1+j][1] = 3;
+            }
+            
         }
     }
     // Adiciona o Navio de tamanho 3 na Vertical
-    for (int i=0; i<TAM_NAVIO; i++){
-        for (int j=0; j<TAM_NAVIO; j++){
-            tabuleiro[linhav][colunav+j] = 3;
+    for (int i=0; i<TAM_NAVIO_V; i++){
+        for (int j=0; j<TAM_NAVIO_V; j++){
+            if(tabuleiro[1][3+j]==0){
+                tabuleiro[1][3+j] = 3;
+            } else{
+                break;
+            }
+            
+        }
+    }
+    // Adiciona o navio na diagonal
+    for (int i=0; i<TAM_NAVIO_DD; i++){
+        for (int j=0; j<TAM_NAVIO_DD; j++){
+            if(tabuleiro [3+j][3+j]==0){
+                tabuleiro[3+j][3+j] = 3;
+            } else{
+                break;
+            }
+            
+        }
+    }
+     // Adiciona o navio na outra diagonal
+     for (int i=0; i<TAM_NAVIO_DE; i++){
+        for (int j=0; j<TAM_NAVIO_DE; j++){
+            if(tabuleiro[0+j][9-j]== 0){
+                tabuleiro[0+j][9-j] = 3;
+            } else{
+                break;
+            }
+            
         }
     }
     printf("\n");
