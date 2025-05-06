@@ -29,8 +29,21 @@ int main() {
     // Adiciona o Navio de tamanho 3 na Horizontal
     for (int i=0; i<TAM_NAVIO; i++){
         for (int j=0; j<TAM_NAVIO; j++){
-            tabuleiro[i][j] = 3;
+            tabuleiro[linhah+j][colunah] = 3;
         }
+    }
+    // Adiciona o Navio de tamanho 3 na Vertical
+    for (int i=0; i<TAM_NAVIO; i++){
+        for (int j=0; j<TAM_NAVIO; j++){
+            tabuleiro[linhav][colunav+j] = 3;
+        }
+    }
+    printf("\n");
+    for (int i = 0; i<TAMANHO;i++){
+        for (int j = 0; j<TAMANHO; j++){
+            printf("%d ",tabuleiro[i][j]);
+        }
+        printf("\n");
     }
 
     // Nível Novato - Posicionamento dos Navios
