@@ -133,5 +133,83 @@ int main() {
         }
         printf("\n");
     }
+
+        // Preenche a matriz de OCTAEDRO com 0
+        for(int i=0; i<TAM_HAB_L; i++){
+            for(int j=0; j<TAM_HAB_C; j++){
+                octaedro[i][j] = 0;
+            }
+        }
+       
+         // Preencher a matriz com 1 em formato de OCTAEDRO
+         for (int i = 0; i < TAM_HAB_L; i++) {
+            if (i == 0 || i == TAM_HAB_L-1) { // topo e base
+                octaedro[i][TAM_HAB_C/2] = 1;
+            } else if (i == 1) { // linha do meio
+                for (int j = TAM_HAB_C/2 - 1; j <= TAM_HAB_C/2 + 1; j++) {
+                    octaedro[i][j] = 1;
+                }
+            }
+        }
+    
+    
+        // Exibir a matriz resultante
+        printf("\n");
+        for (int i = 0; i < TAM_HAB_L; i++) {
+            for (int j = 0; j < TAM_HAB_C; j++) {
+                printf("%d ", octaedro[i][j]);
+            }
+            printf("\n");
+        }
+
+        // Aplicar cone ao tabuleiro
+        for (int i = 0; i < TAM_HAB_L; i++) {       // linhas da habilidade
+            for (int j = 0; j < TAM_HAB_C; j++) {   // colunas da habilidade
+                if (cone[i][j] == 1) {
+                    int linha_tab = 0 + i;
+                    int coluna_tab = 5 + (j - 2); // centro da matriz cone é coluna 2
+
+                    if (linha_tab >= 0 && linha_tab < TAMANHO && coluna_tab >= 0 && coluna_tab < TAMANHO) {
+                        if(tabuleiro[linha_tab][coluna_tab] != 3){
+                            tabuleiro[linha_tab][coluna_tab] = 5;
+                        }
+                        
+                    }
+                }
+            }
+        }
+        // Aplicar CRUZ ao tabuleiro
+        for (int i = 0; i < TAM_HAB_L; i++) {       // linhas da habilidade
+            for (int j = 0; j < TAM_HAB_C; j++) {   // colunas da habilidade
+                if (cruz[i][j] == 1) {
+                    int linha_tab = 4 + i;
+                    int coluna_tab = 5 + (j - 2); // centro da matriz cone é coluna 2
+
+                    if (linha_tab >= 0 && linha_tab < TAMANHO && coluna_tab >= 0 && coluna_tab < TAMANHO) {
+                        if(tabuleiro[linha_tab][coluna_tab] != 3){
+                            tabuleiro[linha_tab][coluna_tab] = 5;
+                        }
+                        
+                    }
+                }
+            }
+        }
+        // Aplicar octaedro ao tabuleiro
+        for (int i = 0; i < TAM_HAB_L; i++) {       // linhas da habilidade
+            for (int j = 0; j < TAM_HAB_C; j++) {   // colunas da habilidade
+                if (octaedro[i][j] == 1) {
+                    int linha_tab = 7 + i;
+                    int coluna_tab = 3 + (j - 2); // centro da matriz cone é coluna 2
+
+                    if (linha_tab >= 0 && linha_tab < TAMANHO && coluna_tab >= 0 && coluna_tab < TAMANHO) {
+                        if(tabuleiro[linha_tab][coluna_tab] != 3){
+                            tabuleiro[linha_tab][coluna_tab] = 5;
+                        }
+                        
+                    }
+                }
+            }
+        }
+        imprimirTabuleiro(tabuleiro);
     return 0;
 }
