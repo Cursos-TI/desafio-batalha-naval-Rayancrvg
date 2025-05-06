@@ -7,6 +7,8 @@
 #define TAM_NAVIO_V 3 // Tamanho do navio na vertical
 #define TAM_NAVIO_DD 3 // Tamanho do navio na diagonal direita
 #define TAM_NAVIO_DE 4 // Tamanho do navio na diagonal esquerda
+#define TAM_HAB_L 3 // Tamanho da linha da habilidade
+#define TAM_HAB_C 5 // Tmanho da coluna da habilidade 
 void imprimirTabuleiro(int tabuleiro [TAMANHO][TAMANHO]){
     // Imprime o cabeçalho das colunas (A B C D ...)
     printf("  ");  // Espaço para alinhar com os números das linhas
@@ -26,6 +28,7 @@ int main() {
     // NIVEL NOVATO TEMA 4
     // Declara a variável para armazenamento de tabuleiro
     int tabuleiro [TAMANHO][TAMANHO];
+    int cone[TAM_HAB_L][TAM_HAB_C], cruz[TAM_HAB_L][TAM_HAB_C], octaedro[TAM_HAB_L][TAM_HAB_C];
 
     // adiciona o valor 0 para todas as posições do tabuleiro
     // sendo 0 = água
@@ -81,37 +84,54 @@ int main() {
     printf("\n");
     // imprime o tabuleiro
     imprimirTabuleiro(tabuleiro);
+    // Preenche a matriz de cone com 0
+    for(int i=0; i<TAM_HAB_L; i++){
+        for(int j=0; j<TAM_HAB_C; j++){
+            cone[i][j] = 0;
+        }
+    }
+   
+     // Preencher a matriz com 1 em formato de cone, começando no meio da primeira linha
+    for (int i = 0; i < TAM_HAB_L; i++) {
+        for (int j = TAM_HAB_C/2 - i; j <= TAM_HAB_C/2 + i; j++) {
+            if (j >= 0 && j < TAM_HAB_C) { // Garantir que o índice j não saia da matriz
+                cone[i][j] = 1;
+            }
+        }
+    }
 
-    // Nível Novato - Posicionamento dos Navios
-    // Sugestão: Declare uma matriz bidimensional para representar o tabuleiro (Ex: int tabuleiro[5][5];).
-    // Sugestão: Posicione dois navios no tabuleiro, um verticalmente e outro horizontalmente.
-    // Sugestão: Utilize `printf` para exibir as coordenadas de cada parte dos navios.
+    // Exibir a matriz resultante
+    printf("\n");
+    for (int i = 0; i < TAM_HAB_L; i++) {
+        for (int j = 0; j < TAM_HAB_C; j++) {
+            printf("%d ", cone[i][j]);
+        }
+        printf("\n");
+    }
 
-    // Nível Aventureiro - Expansão do Tabuleiro e Posicionamento Diagonal
-    // Sugestão: Expanda o tabuleiro para uma matriz 10x10.
-    // Sugestão: Posicione quatro navios no tabuleiro, incluindo dois na diagonal.
-    // Sugestão: Exiba o tabuleiro completo no console, mostrando 0 para posições vazias e 3 para posições ocupadas.
+    // Preenche a matriz de CRUZ com 0
+    for(int i=0; i<TAM_HAB_L; i++){
+        for(int j=0; j<TAM_HAB_C; j++){
+            cruz[i][j] = 0;
+        }
+    }
+   
+     // Preencher a matriz com 1 em formato de CRUZ
+    for (int i = 0; i < TAM_HAB_L; i++) {
+        cruz[i][TAM_HAB_C/2] = 1;
+        for (int j = 0; j <TAM_HAB_C; j++) {
+            cruz[TAM_HAB_L/2][j] = 1;
+        }
+    }
 
-    // Nível Mestre - Habilidades Especiais com Matrizes
-    // Sugestão: Crie matrizes para representar habilidades especiais como cone, cruz, e octaedro.
-    // Sugestão: Utilize estruturas de repetição aninhadas para preencher as áreas afetadas por essas habilidades no tabuleiro.
-    // Sugestão: Exiba o tabuleiro com as áreas afetadas, utilizando 0 para áreas não afetadas e 1 para áreas atingidas.
 
-    // Exemplos de exibição das habilidades:
-    // Exemplo para habilidade em cone:
-    // 0 0 1 0 0
-    // 0 1 1 1 0
-    // 1 1 1 1 1
-    
-    // Exemplo para habilidade em octaedro:
-    // 0 0 1 0 0
-    // 0 1 1 1 0
-    // 0 0 1 0 0
-
-    // Exemplo para habilidade em cruz:
-    // 0 0 1 0 0
-    // 1 1 1 1 1
-    // 0 0 1 0 0
-
+    // Exibir a matriz resultante
+    printf("\n");
+    for (int i = 0; i < TAM_HAB_L; i++) {
+        for (int j = 0; j < TAM_HAB_C; j++) {
+            printf("%d ", cruz[i][j]);
+        }
+        printf("\n");
+    }
     return 0;
 }
